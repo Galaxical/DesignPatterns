@@ -3,8 +3,8 @@ class phone {
     //creating phone with constructor variables like phone number and observer
 
     constructor(){
-        this.phoneNumbers;
-        this.observers;
+        this.phoneNumbers = [];
+        this.observers = [];
     }
 
     //addPhone number
@@ -14,7 +14,7 @@ class phone {
 
     //remove Phone number
     removePhoneNumber(phoneNumber){
-        const index = this.phoneNumber.indexOf(phoneNumber)
+        const index = this.phoneNumbers.indexOf(phoneNumber)
         if(index !== -1){
             this.phoneNumbers.splice(index, 1);
         }
@@ -22,9 +22,9 @@ class phone {
 
     //dial phone num
     dialPhoneNumber(phoneNumber){
-        if(this.phoneNumbers.include(phoneNumber)){
+        if(this.phoneNumbers.includes(phoneNumber)){
             console.log(`Dialing ${phoneNumber}`);
-            this.notifyObservers(phoneNumber)
+            this.notifyObservers(phoneNumber);
         }else{
             console.log(`${phoneNumber} is not a registered number`)
         }
@@ -48,13 +48,17 @@ class phone {
     }
 }
 
-//create a new Phone Instance
+//create a new phone Instance
 const Phone = new phone();
 
-//create a callLog to reg
-
-class observer {
+//create a callLog with observer method
+const observer = {
     callLog(phoneNumber){
         console.log(`Call logged, Observer notified: Dialing ${phoneNumber}`)
     }
 }
+
+//instantiate phone classes such as addNumber, dial number and add observer
+Phone.addPhoneNumber(237023232);
+Phone.addObserver(observer);
+Phone.dialPhoneNumber(237023232)
